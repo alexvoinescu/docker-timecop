@@ -49,7 +49,7 @@ RUN docker-php-ext-enable --ini-name 0-apc.ini apcu apc
 
 RUN wget https://github.com/hnw/php-timecop/archive/master.zip \
     && unzip master.zip \
-    && mv php-timecop-master /usr/src/php/ext/php-timecop \
+    && mv php-timecop-master $(php-config --extension-dir) \
     && docker-php-ext-install php-timecop
 
 RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
