@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
         libmagickwand-dev \
         curl \
         git \
+        wget \
     && apt-get autoremove -y \
     && apt-get clean all
 
