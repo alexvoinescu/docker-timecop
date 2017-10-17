@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
         curl \
         git \
         wget \
+        mysql-client \
     && apt-get autoremove -y \
     && apt-get clean all
 
