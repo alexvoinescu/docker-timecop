@@ -3,6 +3,7 @@ FROM php:7.0
 MAINTAINER Alexandru Voinescu "voinescu.alex@gmail.com"
 
 RUN apt-get update && apt-get install -y \
+        unzip \
         wget \
     && apt-get autoremove -y \
     && apt-get clean all
