@@ -1,37 +1,26 @@
-FROM php:7.0
+FROM debian:jessie
 
 MAINTAINER Alexandru Voinescu "voinescu.alex@gmail.com"
 
-RUN apt-get update && apt-get install -y \
-        libmcrypt-dev \
-        libicu-dev \
-        libxslt-dev \
-        zlib1g-dev \
-        libmemcached-dev \
-        libssl-dev \
-        libmagickwand-dev \
-        curl \
-        git \
-        wget \
-        mysql-client \
-    && apt-get autoremove -y \
-    && apt-get clean all
+# Setup environment
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN docker-php-ext-install mcrypt
-RUN docker-php-ext-install intl
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install pdo_mysql
-RUN docker-php-ext-install mysqli
-RUN docker-php-ext-install pcntl
-RUN docker-php-ext-install xsl
-RUN docker-php-ext-install zip
-RUN docker-php-ext-install soap
+RUN apt-get update -y
+
+RUN apt-get install wget apache2 mysql-client -y
+
+RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list
+RUB echo "deb-src http://packages.dotdeb.org jessie all" >> etc/apt/sources.list
+
+RUN wget https://www.dotdeb.org/dotdeb.gpg
+RUN apt-key add dotdeb.gpg -y
+
+RUN apt-get update -y
+
+RUN apt-get install php7.0 php7.0-dev php7.0-common php-pear php7.0-opcache php7.0-mysql php7.0-curl -y
+
+RUN sudo apt-get install libapache2-mod-php7.0 -y
 
 RUN pecl install timecop-beta
 
-RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
-RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory.ini
-RUN echo "extension=timecop.so" >> docker-php-ext-pdo_mysql.ini
-
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
+RUN echo "extension=timecop.so" >> /etc/php/7.0/cli/php.ini
