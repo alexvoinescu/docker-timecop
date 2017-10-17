@@ -10,7 +10,7 @@ RUN apt-get update -y
 RUN apt-get install wget apache2 mysql-client -y
 
 RUN echo "deb http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list
-RUB echo "deb-src http://packages.dotdeb.org jessie all" >> etc/apt/sources.list
+RUN echo "deb-src http://packages.dotdeb.org jessie all" >> etc/apt/sources.list
 
 RUN wget https://www.dotdeb.org/dotdeb.gpg
 RUN apt-key add dotdeb.gpg -y
@@ -19,7 +19,7 @@ RUN apt-get update -y
 
 RUN apt-get install php7.0 php7.0-dev php7.0-common php-pear php7.0-opcache php7.0-mysql php7.0-curl -y
 
-RUN sudo apt-get install libapache2-mod-php7.0 -y
+RUN apt-get install libapache2-mod-php7.0 -y
 
 RUN pecl install timecop-beta
 
