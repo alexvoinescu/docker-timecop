@@ -32,7 +32,6 @@ RUN pecl install timecop-beta
 RUN echo "date.timezone=UTC" > /usr/local/etc/php/conf.d/timezone.ini
 RUN echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory.ini
 RUN echo "extension=timecop.so" >> docker-php-ext-pdo_mysql.ini
-RUN service apache2 restart
 
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
