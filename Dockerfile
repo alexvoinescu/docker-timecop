@@ -17,7 +17,7 @@ RUN apt-key add dotdeb.gpg -y
 
 RUN apt-get update -y
 
-RUN apt-get install php7.0 php7.0-dev php7.0-common php-pear php7.0-opcache php7.0-mysql php7.0-curl -y
+RUN apt-get install php7.0 php7.0-dev php7.0-common php-pear php7.0-opcache php7.0-mysql php7.0-zip php7.0-curl -y
 
 RUN apt-get install libapache2-mod-php7.0 -y
 
