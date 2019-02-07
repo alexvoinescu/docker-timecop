@@ -21,6 +21,8 @@ RUN apt-get install php7.0 php7.0-dev php7.0-common php-pear php7.0-opcache php7
 
 RUN apt-get install libapache2-mod-php7.0 -y
 
+RUN apt-get install wget apache2 mysql-client curl -y
+
 RUN pecl install timecop-beta
 
 RUN echo "extension=timecop.so" >> /etc/php/7.0/cli/php.ini
